@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Value Property</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/prettify.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="assets/prettify.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body onload="prettyPrint();">
+		<div class="header">
+			Property: valueProperty<span class="mandatory">*</span> (default is null)
+		</div>
+		<div class="marginTB5px explanation">
+			Setting this property is mandatory. It is used to specify the property which is going to be
+			used to populate the text input element when the item is selected by either clicking on it 
+			or by navigating to the item in the drop down using the keyboard's navigation keys (provided
+			key navigation is not overridden) and pressing enter key.<br/>
+			<span class="mandatory">#</span>It is important to know the response of the ajax call in advance.
+		</div>
+		<div class="marginTB5px sample-code">The response will contain an array of json objects of the following type</div>
+<pre class="prettyprint">
+{
+	"name": "...",
+	"email": "...",
+	"id": "..."
+}
+</pre>
+		<div class="marginT15px demo">Demo: Setting valueProperty to name</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" id="x-demo-1" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#x-demo-1" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith:true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Setting valueProperty to email</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" id="x-demo-2" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#x-demo-2" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "email",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith:true}
+});
+</pre>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( '#x-demo-1' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith:true}
+			});
+			$( '#x-demo-2' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "email",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith:true}
+			});
+		});
+	</script>
+</html>

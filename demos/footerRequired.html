@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Footer</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/prettify.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="assets/prettify.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body onload="prettyPrint();">
+		<div class="header">
+			Property: footerRequired (default is true)
+		</div>
+		<div class="marginTB5px explanation">
+			This property is used to display the pagination at the bottom of the drop down.
+			If you do not want pagination to be displayed you can set this property to false.<br/>
+			<span class="mandatory">#</span>The footer will be hidden in case the total number of items returned by the ajax 
+			call is less than the itemsPerPage property.<br/>
+			<span class="mandatory">#</span>Setting this property to false will also disable next and previous key navigation.
+			Up down key navigation will stay intact until unless specified in the options.
+		</div>
+		<div class="marginT15px demo">Demo: default behaviour</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" class="footer-required width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( ".footer-required" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith:true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Setting footerRequired to false</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" class="footer-not-required width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( ".footer-not-required" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	footerRequired: false,
+	filterJson: {startsWith:true}
+});
+</pre>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( '.footer-required' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith:true}
+			});
+			$( '.footer-not-required' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				footerRequired: false,
+				filterJson: {startsWith:true}
+			});
+		});
+	</script>
+</html>

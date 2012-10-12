@@ -1,0 +1,26 @@
+/* input element wrapper
+------------------------------------------------ */
+.paginateddropdown-text-wrapper { border: 1px solid #CCCCCC; background-color: #FFFFFF; font-family: verdana; font-size: 12px; cursor: pointer; }
+.paginateddropdown-link-wrapper { font-family: verdana; font-size: 12px; cursor: pointer; }
+/* input element mark-up
+------------------------------------------------ */
+.paginateddropdown { border-width: 0px !important; outline: none; }
+/* drop down container and close button
+------------------------------------------------ */
+.paginateddropdown-link-wrapper .paginateddropdown-container { position: absolute; border: 1px solid #808080; background-color: #FFFFFF; }
+.paginateddropdown-link-wrapper a.paginateddropdown { text-decoration: none; }
+.paginateddropdown-text-wrapper .paginateddropdown-container { position: absolute; border: 1px solid #808080; background-color: #FFFFFF; }
+.paginateddropdown-container div { padding: 3px 2px; color: #000000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.paginateddropdown-close-button { position: absolute; }
+.paginateddropdown-close-button .x-close-btn-icon { width: 10px; height: 10px; background-image: url("../images/error-icon.png"); background-repeat: no-repeat; }
+/* drop down footer
+------------------------------------------------ */
+.paginateddropdown-footer { padding: 1px 2px; height: 20px; border-top: 1px solid #808080; cursor: default; }
+.paginateddropdown-footer-content { white-space: nowrap; float: right; margin-right: 5px; }
+.paginateddropdown-footer-left-nav, .paginateddropdown-footer-right-nav { cursor: pointer; }
+.paginateddropdown-footer-info { padding: 0px 5px; font-size: 10px; cursor: text; }
+/* drop down item
+------------------------------------------------ */
+.paginateddropdown-text-wrapper .selected-item { background-color: yellow; }
+.paginateddropdown-text-wrapper .paginateddropdown-item:hover { background-color: yellow; }
+.paginateddropdown-link-wrapper .paginateddropdown-item:hover { background-color: yellow; }

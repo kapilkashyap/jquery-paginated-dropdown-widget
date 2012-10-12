@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Filter JSON</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/prettify.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="assets/prettify.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body onload="prettyPrint();">
+		<div class="header">
+			Property: cache (default is false)
+		</div>
+		<div class="marginTB5px explanation">
+			This property allows you to set caching for the AJAX calls. Have set this to false by default and leave on the
+			users to decide the value for this property as per their requirement.
+		</div>
+
+		<div class="marginT15px demo">Demo: default behaviour</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" id="x-demo-1" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#x-demo-1" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith: true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Setting cache to true</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" id="x-demo-2" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#x-demo-2" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith: true},
+	cache: true
+});
+</pre>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( '#x-demo-1' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith: true}
+			});
+			$( '#x-demo-2' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith: true},
+				cache: true
+			});
+		});
+	</script>
+</html>

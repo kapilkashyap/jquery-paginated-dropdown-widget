@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Notifications</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/prettify.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="assets/prettify.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body onload="prettyPrint();">
+		<div class="header">
+			Property: elementType (default is text)
+		</div>
+		<div class="marginTB5px explanation">
+			This property is used to associate this widget with a link allowing you to click on the link
+			and display the drop down. This can be useful in case you want to show some notifications
+			or alerts.<br/>
+			<span class="mandatory">#</span>The valueProperty is not mandatory in this case.<br/>
+			<span class="mandatory">#</span>The key navigations are disabled by default.
+		</div>
+		<div class="marginT15px demo">Demo:</div>
+		<div class="marginTB5px x-inline-block marginL20px">
+			<a href="javascript:void(0)" class="x-notifications">Notifications</a>
+		</div>
+		<div class="marginT15px sample-code">Sample Html Code:</div>
+<pre class="prettyprint">
+&lt;a href="javascript:void(0)" class="x-notifications"&gt;Notification&lt;&#47;a&gt;
+</pre>
+		<div class="marginT15px sample-code">Sample jQuery Code:</div>
+<pre class="prettyprint">
+$( ".x-notifications" ).paginateddropdown({
+	url: "assets/notifications.json",
+	itemTemplate: "&lt;div title='{@:title}' style='padding: 5px; white-space: normal;'&gt;{@:title}&lt;/div&gt;",
+	elementType: "link",
+	itemsPerPage: 5,
+	persistState: false,
+	closeBtnRequired: false,
+	dropdownWidth: 300,
+	customEventPrefix: "lnk"
+}).bind( "lnkitemselected", function( event, data ) {
+	if(window.console) {
+		console.log("callback - lnkitemselected");
+		console.log(event);
+		console.log(data);
+	}
+});
+</pre>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( '.x-notifications' ).paginateddropdown({
+				url: "assets/notifications.json",
+				itemTemplate: "<div title=\"{@:title}\" style=\"padding: 5px; white-space: normal;\">{@:title}</div>",
+				elementType: "link",
+				itemsPerPage: 5,
+				persistState: false,
+				closeBtnRequired: false,
+				dropdownWidth: 300,
+				customEventPrefix: "lnk"
+			}).bind( "lnkitemselected", function( event, data ) {
+				if(window.console) {
+					console.log("callback - lnkitemselected");
+					console.log(event);
+					console.log(data);
+				}
+		    });
+		});
+	</script>
+</html>

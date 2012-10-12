@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Persist State</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/prettify.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="assets/prettify.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body onload="prettyPrint();">
+		<div class="header">
+			Property: persistState (default is false)
+		</div>
+		<div class="marginTB5px explanation">
+			This property allows you to persist the state of the drop down, meaning the widget
+			will keep track of the page and even the item that you have navigated to. This will be
+			useful when you have navigated to some item in the drop down but some how the drop down
+			got closed (either by pressing Esc key or by clicking on the close button or by clicking
+			somewhere else on the page, basically blurring the drop down) you can simply go back to
+			the input element and start from your previous state.<br/>
+			<span class="mandatory">#</span>Making the input element blank will reset the widget state. 
+		</div>
+		<div class="marginT15px demo">Demo: default behaviour</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" id="x-demo-1" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#x-demo-1" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith:true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Setting persistState to true</div>
+		<div class="marginTB5px x-inline-block">
+			<input type="text" id="x-demo-2" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#x-demo-2" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@name}&lt;/div&gt;&lt;/div&gt;",
+	persistState: true,
+	filterJson: {startsWith:true}
+});
+</pre>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( '#x-demo-1' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith:true}
+			});
+			$( '#x-demo-2' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				persistState: true,
+				filterJson: {startsWith:true}
+			});
+		});
+	</script>
+</html>

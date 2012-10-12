@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Default</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body>
+		<div>
+			<div class="marginT10px" style="border: 2px solid #FFFFFF; padding: 5px;">
+				<div class="x-inline-block">
+					<input type="text" class="apply-paginateddropdown width250px" name="searchTerm" value="" autocomplete="off" />
+				</div>
+				<div class="x-inline-block" style="margin-left: 10px;"><span class="mandatory">#</span>Use below table to configure Paginated Dropdown Widget applied to this input box.</div>
+			</div>
+			<br/>
+			<div class="paddingT20px">
+				<table class="input-form">
+					<tr class="input-row">
+						<th>Properties</th>
+						<th>Values</th>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">url<span class="mandatory">*</span>:</td>
+						<td class="input-field text inputBorder">
+							<input id="url" type="text" value="assets/cricketers.json" />
+							<span class="input-label">Default: null (Current value returns json object with id, name and email property)</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">itemTemplate<span class="mandatory">*</span>:</td>
+						<td class="input-field text inputBorder">
+							<textarea id="item-template" name="template" class="textArea"><div title="{@:id}"><div>{@:name}</div><div>{@:email}</div></div></textarea>
+							<span class="input-label">Default: null</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">valueProperty<span class="mandatory">*</span>:</td>
+						<td class="input-field text inputBorder">
+							<select id="value-property">
+								<option value="name">name</option>
+								<option value="email">email</option>
+								<option value="id">id</option>
+							</select>
+							<span class="input-label">Default: null (one of the properties in the returned json object.)</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">itemsPerPage:</td>
+						<td class="input-field text inputBorder">
+							<select id="items-per-page">
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="15">15</option>
+							</select>
+							<span class="input-label">Default: 10</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">dropdownWidth:</td>
+						<td class="input-field text inputBorder">
+							<input id="dropdown-width" type="text" name="dropdownWidth" value="" />
+							<span class="input-label">Enter numeric value. Default: null</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">persistState:</td>
+						<td class="input-field text inputBorder">
+							<select id="persist-state">
+								<option value="true">True</option>
+								<option value="false" selected="selected">False</option>
+							</select>
+							<span class="input-label">Default: false</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">closeBtnRequired:</td>
+						<td class="input-field text inputBorder">
+							<select id="close-btn-required">
+								<option value="true">True</option>
+								<option value="false">False</option>
+							</select>
+							<span class="input-label">Default: true</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">footerRequired:</td>
+						<td class="input-field text inputBorder">
+							<select id="footer-required">
+								<option value="true">True</option>
+								<option value="false">False</option>
+							</select>
+							<span class="input-label">Default: true</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">keyNavigation.up-down:</td>
+						<td class="input-field text inputBorder">
+							<select id="up-down">
+								<option value="true">True</option>
+								<option value="false">False</option>
+							</select>
+							<span class="input-label">Default: true</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">keyNavigation.next-prev:</td>
+						<td class="input-field text inputBorder">
+							<select id="next-prev">
+								<option value="true">True</option>
+								<option value="false">False</option>
+							</select>
+							<span class="input-label">Default: true</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">customEventPrefix:</td>
+						<td class="input-field text inputBorder">
+							<input id="custom-event-prefix" type="text" name="customEventPrefix" value="" />
+							<span class="input-label">Default: 'paginateddropdown'</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">filterJson:</td>
+						<td class="input-field text inputBorder">
+							<textarea id="filterJson" name="filterJson" class="textArea">{"wrapper": true, "checkContains": false, "startsWith": true, "matchCase": false, "avoidDuplicates": false}</textarea>
+							<span class="input-label">Default: null</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td class="input-label text inputBorder">cache:</td>
+						<td class="input-field text inputBorder">
+							<select id="cache">
+								<option value="false">False</option>
+								<option value="true">True</option>
+							</select>
+							<span class="input-label">Default: false</span>
+						</td>
+					</tr>
+					<tr class="input-row">
+						<td colspan="2">
+							<button id="btn-apply" name="Apply">Apply Changes</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( ".apply-paginateddropdown" ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div><div>{@:email}</div></div>",
+				filterJson: {startsWith: true}
+			}).bind( "paginateddropdownitemselected", function( event, data ) {
+				if(window.console) {
+					console.log("callback - paginateddropdownitemselected");
+					console.log(event);
+					console.log(data);
+				}
+		    });
+		});
+		
+		$( "#btn-apply" ).click(function( event ) {
+			var dropdownWidth = $( "#dropdown-width" ).val(),
+				persistState = $( "#persist-state" ).val(),
+				closeBtnRequired = $( "#close-btn-required" ).val(),
+				footerRequired = $( "#footer-required" ).val(),
+				upDown = $( "#up-down" ).val(),
+				nextPrev = $( "#next-prev" ).val(),
+				cep = $( "#custom-event-prefix" ).val(),
+				cache = $( "#cache" ).val(),
+				filterJsonConfig = $( "#filterJson" ).val();
+
+			$( ".apply-paginateddropdown" ).paginateddropdown( "destroy" );
+			
+			$( ".apply-paginateddropdown" ).paginateddropdown({
+				url: $( "#url" ).val(),
+				itemTemplate: $( "#item-template" ).val(),
+				valueProperty: $( "#value-property" ).val(),
+				itemsPerPage: $( "#items-per-page" ).val(),
+				dropdownWidth: dropdownWidth == "" ? null : parseInt(dropdownWidth, 10),
+				persistState: persistState == "true" ? true : false,
+				closeBtnRequired: closeBtnRequired == "true" ? true : false,
+				footerRequired: footerRequired == "true" ? true : false,
+				keyNavigation: {
+					up_down: upDown == "true" ? true : false,
+					next_prev: nextPrev == "true" ? true : false
+				},
+				filterJson: filterJsonConfig.length > 0 ? $.parseJSON(filterJsonConfig) : false,
+				customEventPrefix: cep == "" ? null : cep,
+				cache: cache == "true" ? true : false
+			}).bind( (cep != "" ? cep : $.kk.paginateddropdown.prototype.widgetEventPrefix) + "itemselected", function( event, data ) {
+				if(window.console) {
+					console.log("callback - " + event.type);
+					console.log(event);
+					console.log(data);
+				}
+		    });
+			$( ".apply-paginateddropdown" ).val( "" ).keyup();
+		});
+	</script>
+</html>

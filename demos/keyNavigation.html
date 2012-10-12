@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paginated Dropdown Widget - Key Navigation</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+
+		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/prettify.js"></script>
+		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="assets/style.css" />
+		<link rel="stylesheet" type="text/css" href="assets/prettify.css" />
+		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
+	</head>
+	<body onload="prettyPrint();">
+		<div class="header">
+			Property: keyNavigation
+		</div>
+		<div class="marginTB5px explanation">
+			This property is used associate keyboard navigation keys with the drop down. Up down,
+			next and previous key navigation is possible on the drop down items. The up_down property
+			under keyNavigation is to toggle the up and down navigation. While next_prev property
+			under keyNavigation is to toggle the ability to navigate through pages using left and right
+			navigation keys.<br/>
+			<span class="mandatory">#</span>However you can navigate through pages using the arrow buttons provided in the footer.
+		</div>
+		<div class="marginTB5px sample-code">Default values:</div>
+<pre class="prettyprint">
+keyNavigation: {
+	up_down: true,
+	next_prev: true
+}
+</pre>
+		<div class="marginT15px demo">Demo: default behaviour</div>
+		<div class="marginTB5px x-inline-block">
+			<input id="key-navigation-0" type="text" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#key-navigation-0" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	filterJson: {startsWith:true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Turn off page navigation</div>
+		<div class="marginTB5px x-inline-block">
+			<input id="key-navigation-1" type="text" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#key-navigation-1" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	keyNavigation: {
+		next_prev: false
+	},
+	filterJson: {startsWith:true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Turn off item navigation</div>
+		<div class="marginTB5px x-inline-block">
+			<input id="key-navigation-2" type="text" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#key-navigation-2" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	keyNavigation: {
+		up_down: false
+	},
+	filterJson: {startsWith:true}
+});
+</pre>
+		<div class="marginT15px demo">Demo: Turn off keyNavigation</div>
+		<div class="marginTB5px x-inline-block">
+			<input id="key-navigation-3" type="text" class="width250px" name="searchTerm" value="" autocomplete="off" />
+		</div>
+		<div class="marginT15px sample-code">Sample Code:</div>
+<pre class="prettyprint">
+$( "#key-navigation-3" ).paginateddropdown({
+	url: "assets/cricketers.json",
+	valueProperty: "name",
+	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
+	keyNavigation: {
+		up_down: false,
+		next_prev: false
+	},
+	filterJson: {startsWith:true}
+});
+</pre>
+	</body>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( '#key-navigation-0' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				filterJson: {startsWith:true}
+			});
+			$( '#key-navigation-1' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				keyNavigation: {
+					next_prev: false
+				},
+				filterJson: {startsWith:true}
+			});
+			$( '#key-navigation-2' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				keyNavigation: {
+					up_down: false
+				},
+				filterJson: {startsWith:true}
+			});
+			$( '#key-navigation-3' ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
+				keyNavigation: {
+					up_down: false,
+					next_prev: false
+				},
+				filterJson: {startsWith:true}
+			});
+		});
+	</script>
+</html>
