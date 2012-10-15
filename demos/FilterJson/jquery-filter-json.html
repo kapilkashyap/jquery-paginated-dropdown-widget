@@ -6,7 +6,7 @@
 		<title>jQuery Filter JSON Plugin</title>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-		<script type="text/javascript" src="../assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="../assets/filterJSON.plugin.min.js"></script>
 		<script type="text/javascript" src="../assets/sample.json"></script>
 		<link rel="stylesheet" type="text/css" href="../assets/style.css" />
 	</head>
@@ -75,7 +75,7 @@
 			
 			<tr class="input-row">
 				<td colspan="2" class="buttonContainer">
-					<input type="button" id="filterJson" value="Filter JSON" />
+					<input type="button" id="filterJSON" value="Filter JSON" />
 				</td>
 			</tr>
 			<tr class="input-row">
@@ -95,7 +95,7 @@
 			// selecting the first json sample
 			$( ":input[name='sample-select']:first" ).click();
 			
-			$( "#filterJson" ).click(function() {
+			$( "#filterJSON" ).click(function() {
 				var startTime = new Date().getTime(),
 					json = $.parseJSON( $( "#json" ).val() ),
 					property = $( "#property" ).val(),
@@ -118,7 +118,7 @@
 							matchCase: matchCase,
 							avoidDuplicates: avoidDuplicates
 						},
-						o = $.fn.filterJson(json, config).toArray();
+						o = $.fn.filterJSON(json, config).toArray();
 
 					$( "#filteredJson" ).val( (o != null && o.length > 0) ? JSON.stringify( o ) : "" );
 					$( "#info" ).html("Returned " + o.length + " results in " + (new Date().getTime() - startTime) + " milliseconds.");

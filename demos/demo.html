@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
 
-		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/filterJSON.plugin.min.js"></script>
 		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="assets/style.css" />
 		<link rel="stylesheet" type="text/css" href="../style/paginated.dropdown.widget.css" />
@@ -126,9 +126,9 @@
 						</td>
 					</tr>
 					<tr class="input-row">
-						<td class="input-label text inputBorder">filterJson:</td>
+						<td class="input-label text inputBorder">filterJSON:</td>
 						<td class="input-field text inputBorder">
-							<textarea id="filterJson" name="filterJson" class="textArea">{"wrapper": true, "checkContains": false, "startsWith": true, "matchCase": false, "avoidDuplicates": false}</textarea>
+							<textarea id="filterJSON" name="filterJSON" class="textArea">{"wrapper": true, "checkContains": false, "startsWith": true, "matchCase": false, "avoidDuplicates": false}</textarea>
 							<span class="input-label">Default: null</span>
 						</td>
 					</tr>
@@ -158,7 +158,7 @@
 				url: "assets/cricketers.json",
 				valueProperty: "name",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div><div>{@:email}</div></div>",
-				filterJson: {startsWith: true}
+				filterJSON: {startsWith: true}
 			}).bind( "paginateddropdownitemselected", function( event, data ) {
 				if(window.console) {
 					console.log("callback - paginateddropdownitemselected");
@@ -177,7 +177,7 @@
 				nextPrev = $( "#next-prev" ).val(),
 				cep = $( "#custom-event-prefix" ).val(),
 				cache = $( "#cache" ).val(),
-				filterJsonConfig = $( "#filterJson" ).val();
+				filterJSONConfig = $( "#filterJSON" ).val();
 
 			$( ".apply-paginateddropdown" ).paginateddropdown( "destroy" );
 			
@@ -194,7 +194,7 @@
 					up_down: upDown == "true" ? true : false,
 					next_prev: nextPrev == "true" ? true : false
 				},
-				filterJson: filterJsonConfig.length > 0 ? $.parseJSON(filterJsonConfig) : false,
+				filterJSON: filterJSONConfig.length > 0 ? $.parseJSON(filterJSONConfig) : false,
 				customEventPrefix: cep == "" ? null : cep,
 				cache: cache == "true" ? true : false
 			}).bind( (cep != "" ? cep : $.kk.paginateddropdown.prototype.widgetEventPrefix) + "itemselected", function( event, data ) {

@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
 
-		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/filterJSON.plugin.min.js"></script>
 		<script type="text/javascript" src="assets/prettify.js"></script>
 		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
 		
@@ -34,7 +34,7 @@ $( "#x-demo-1" ).paginateddropdown({
 	url: "assets/cricketers.json",
 	valueProperty: "name",
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
-	filterJson: {startsWith:true}
+	filterJSON: {startsWith:true}
 }).bind( "paginateddropdownitemselected", function( event, data ) {
 	if(window.console) {
 		console.log("callback - paginateddropdownitemselected");
@@ -54,7 +54,7 @@ $( "#x-demo-2" ).paginateddropdown({
 	valueProperty: "name",
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
 	customEventPrefix: "pdd",
-	filterJson: {startsWith:true}
+	filterJSON: {startsWith:true}
 }).bind( "pdditemselected", function( event, data ) {
 	if(window.console) {
 		console.log("callback - pdditemselected");
@@ -70,7 +70,7 @@ $( "#x-demo-2" ).paginateddropdown({
 				url: "assets/cricketers.json",
 				valueProperty: "name",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
-				filterJson: {startsWith:true}
+				filterJSON: {startsWith:true}
 			}).bind( "paginateddropdownitemselected", function( event, data ) {
 				if(window.console) {
 					console.log("callback - paginateddropdownitemselected");
@@ -83,7 +83,7 @@ $( "#x-demo-2" ).paginateddropdown({
 				valueProperty: "name",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
 				customEventPrefix: "pdd",
-				filterJson: {startsWith:true}
+				filterJSON: {startsWith:true}
 			}).bind( "pdditemselected", function( event, data ) {
 				if(window.console) {
 					console.log("callback - pdditemselected");

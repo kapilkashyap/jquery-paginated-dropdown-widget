@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
 
-		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/filterJSON.plugin.min.js"></script>
 		<script type="text/javascript" src="assets/prettify.js"></script>
 		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
 		
@@ -42,7 +42,7 @@ $( "#x-demo-1" ).paginateddropdown({
 	url: "assets/cricketers.json",
 	valueProperty: "name",
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
-	filterJson: {startsWith:true}
+	filterJSON: {startsWith:true}
 });
 </pre>
 		<div class="marginT15px demo">Demo: Setting valueProperty to email</div>
@@ -55,7 +55,7 @@ $( "#x-demo-2" ).paginateddropdown({
 	url: "assets/cricketers.json",
 	valueProperty: "email",
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
-	filterJson: {startsWith:true}
+	filterJSON: {startsWith:true}
 });
 </pre>
 	</body>
@@ -65,13 +65,13 @@ $( "#x-demo-2" ).paginateddropdown({
 				url: "assets/cricketers.json",
 				valueProperty: "name",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
-				filterJson: {startsWith:true}
+				filterJSON: {startsWith:true}
 			});
 			$( '#x-demo-2' ).paginateddropdown({
 				url: "assets/cricketers.json",
 				valueProperty: "email",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
-				filterJson: {startsWith:true}
+				filterJSON: {startsWith:true}
 			});
 		});
 	</script>

@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
 
-		<script type="text/javascript" src="assets/filterJson.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/filterJSON.plugin.min.js"></script>
 		<script type="text/javascript" src="assets/prettify.js"></script>
 		<script type="text/javascript" src="../src/paginated.dropdown.widget.min.js"></script>
 		
@@ -15,13 +15,13 @@
 	</head>
 	<body onload="prettyPrint();">
 		<div class="header">
-			Property: filterJson (default is null)
+			Property: filterJSON (default is null)
 		</div>
 		<div class="marginTB5px explanation">
 			This property can take a boolean value as well as an object notation. Setting this property to anything other than null
-			forces the Paginated Drop Down Widget to use the jQuery filterJson plugin. As the name suggests, filterJson plugin can 
+			forces the Paginated Drop Down Widget to use the jQuery filterJSON plugin. As the name suggests, filterJSON plugin can 
 			be used to filter a retrieved JSON Object.<br/>
-			<span class="mandatory">#</span>Setting this property to true will use filterJson plugin with default values such as below:
+			<span class="mandatory">#</span>Setting this property to true will use filterJSON plugin with default values such as below:
 <pre class="prettyprint">
 {
 	property: same as valueProperty,
@@ -30,11 +30,11 @@
 	wrapper: true
 }
 </pre>
-			<span class="mandatory">#</span>Setting this property to a valid filterJson config would force the Paginated Drop Down Widget
-			to extend the default filterJson config (as shown above).<br/>
-			<span class="mandatory">**</span>An important thing to mention over here is the 'wrapper' property of filterJson plugin. If it is
+			<span class="mandatory">#</span>Setting this property to a valid filterJSON config would force the Paginated Drop Down Widget
+			to extend the default filterJSON config (as shown above).<br/>
+			<span class="mandatory">**</span>An important thing to mention over here is the 'wrapper' property of filterJSON plugin. If it is
 			set to true (as the case should always be) it will return the matched properties containing object. If it is set to false, then the 
-			property itself is returned. However, you are free to pass any valid filterJson config to the widget as per your requirement.			
+			property itself is returned. However, you are free to pass any valid filterJSON config to the widget as per your requirement.			
 		</div>
 		<div class="marginT15px demo">Demo: default behaviour</div>
 		<div class="marginTB5px x-inline-block">
@@ -48,7 +48,7 @@ $( "#x-demo-1" ).paginateddropdown({
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;"
 });
 </pre>
-		<div class="marginT15px demo">Demo: Setting filterJson to true</div>
+		<div class="marginT15px demo">Demo: Setting filterJSON to true</div>
 		<div class="marginTB5px x-inline-block">
 			<input type="text" id="x-demo-2" class="width250px" name="searchTerm" value="" autocomplete="off" />
 		</div>
@@ -58,10 +58,10 @@ $( "#x-demo-2" ).paginateddropdown({
 	url: "assets/cricketers.json",
 	valueProperty: "name",
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
-	filterJson: true
+	filterJSON: true
 });
 </pre>
-		<div class="marginT15px demo">Demo: Setting filterJson to config object</div>
+		<div class="marginT15px demo">Demo: Setting filterJSON to config object</div>
 		<div class="marginTB5px x-inline-block">
 			<input type="text" id="x-demo-3" class="width250px" name="searchTerm" value="" autocomplete="off" />
 		</div>
@@ -71,7 +71,7 @@ $( "#x-demo-3" ).paginateddropdown({
 	url: "assets/cricketers.json",
 	valueProperty: "name",
 	itemTemplate: "&lt;div title='{@:email}'&gt;&lt;div&gt;{@:name}&lt;/div&gt;&lt;/div&gt;",
-	filterJson: {startsWith: true}
+	filterJSON: {startsWith: true}
 });
 </pre>
 	</body>
@@ -86,13 +86,13 @@ $( "#x-demo-3" ).paginateddropdown({
 				url: "assets/cricketers.json",
 				valueProperty: "name",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
-				filterJson: true
+				filterJSON: true
 			});
 			$( '#x-demo-3' ).paginateddropdown({
 				url: "assets/cricketers.json",
 				valueProperty: "name",
 				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div></div>",
-				filterJson: {startsWith: true}
+				filterJSON: {startsWith: true}
 			});
 		});
 	</script>

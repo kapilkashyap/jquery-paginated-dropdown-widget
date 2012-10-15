@@ -29,7 +29,7 @@
 				next_prev: true
 			},
 			customEventPrefix: null,
-			filterJson: null,
+			filterJSON: null,
 			cache: false
 	    },
 	    _create: function() {
@@ -75,7 +75,7 @@
 	    	this._checkDependencies();
 	    },
 	    _checkDependencies: function() {
-	    	if(this.options.filterJson && !$.fn.filterJson) {
+	    	if(this.options.filterJSON && !$.fn.filterJSON) {
 	    		var errMsg = "jQuery filter json plugin is required.";
 	    		if(window.console) {
 	    			console.error( errMsg, this.element.context );
@@ -259,13 +259,13 @@
 	    		widgetState.query = query;
 	    		$.getJSON(self.options.url, {"q": query}, function( data ) {
 	    			var filteredJson = null;
-	    			if(self.options.filterJson && $.fn.filterJson) {
-	    				filteredJson = $.fn.filterJson( data, $.extend({
+	    			if(self.options.filterJSON && $.fn.filterJSON) {
+	    				filteredJson = $.fn.filterJSON( data, $.extend({
 	    															property: self.options.valueProperty,
 	    															value: query,
 	    															checkContains: true,
 	    															wrapper: true
-	    														}, self.options.filterJson));
+	    														}, self.options.filterJSON));
 	    			}
 	    			widgetState.fetchedData = widgetState.data = filteredJson ? filteredJson : data;
 	    			self._constructDropDown();
