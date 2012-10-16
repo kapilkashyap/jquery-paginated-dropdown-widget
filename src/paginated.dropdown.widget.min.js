@@ -5,7 +5,7 @@
  * Depends:
  *   - jQuery 1.6+
  *   - jQuery UI 1.8 widget factory
- *   - jQuery Filter Json plugin
+ *   - jQuery Filter Json plugin // optional
  *
  * Dual licensed under the MIT and GPL licenses:
  *   - http://www.opensource.org/licenses/mit-license.php
