@@ -8,11 +8,11 @@ based on properties. You can explore filterJSON under my repositories. However, 
 			
 This Widget supports IE7+, FF 3.6+, Opera 12+, Safari 5+ and Chrome
 
-# Known Issues
+### Known Issues
 
 For this Widget to work in IE7 and below with filterJSON property set as true, you will have to include JSON2.
 
-# Licence
+### Licence
 
 Copyright (c) 2012 Kapil Kashyap.
 Dual licensed under MIT License and GPL License.
