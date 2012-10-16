@@ -12,6 +12,8 @@ This Widget supports IE7+, FF 3.6+, Opera 12+, Safari 5+ and Chrome
 
 For this Widget to work in IE7 and below with filterJSON property set as true, you will have to include JSON2.
 
+You can use: http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js
+
 ### Licence
 
 Copyright (c) 2012 Kapil Kashyap.
