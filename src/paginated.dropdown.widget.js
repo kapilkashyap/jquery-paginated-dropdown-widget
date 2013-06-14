@@ -294,9 +294,21 @@
 	    _constructHtmlUsingTemplate: function() {
 	    	var self = this,
 	    		data = self._getWidgetState().data,
-	    		constructedTemplate = [];
-
-			if(!data) {
+	    		constructedTemplate = [],
+	    		widgetState = self._getWidgetState(),
+	    		matchedText = null,
+	    		underlinedText = null,
+	    		highlightRegExp = new RegExp(widgetState.query, "i"),
+	    		highlightQueryText = function(text) {
+		    		underlinedText = "";
+	    			matchedText = text.match(highlightRegExp);
+	    			if(matchedText && matchedText.length > 0) {
+	    				underlinedText = "<u>" + matchedText.join("") + "</u>";
+	    			}
+	    			return text.replace(highlightRegExp, underlinedText);
+	    		};
+	    	
+	    	if(!data) {
 				var errorMsg = "data is required.";
 				if(window.console) {
 					console.error ? console.error( errorMsg ) : console.log( errorMsg );
@@ -305,6 +317,7 @@
 				alert( errorMsg );
 				return;
 			}
+	    	
 			$( data ).each(function(index, item) {
 				var templateClone = $( "<div></div>" ).html( self.options.itemTemplate ).html();
 				if($.type(item) == "object") {
@@ -313,7 +326,7 @@
 						regEx = new RegExp(templateKey, "g");
 						
 						if(self.options.itemTemplate.indexOf( templateKey ) != -1) {
-							templateClone = templateClone.replace( regEx, v );
+							templateClone = templateClone.replace( regEx, (k == self.options.valueProperty) ? highlightQueryText(v) : v );
 						}
 					});
 				}
@@ -322,7 +335,7 @@
 					regEx = new RegExp(templateKey, "g");
 					
 					if(self.options.itemTemplate.indexOf( templateKey ) != -1) {
-						templateClone = templateClone.replace( regEx, item );
+						templateClone = templateClone.replace( regEx, (k == self.options.valueProperty) ? highlightQueryText(item) : item );
 					}
 				}
 				constructedTemplate.push( templateClone );
