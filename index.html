@@ -1,79 +1,290 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="jquery-paginated-dropdown-widget : A  jQuery Paginated Dropdown Widget which takes a JSON response from the server and converts it into a paginated drop down. It has features like pagination (pretty obvious), custom templates, JSON filtering, keyboard navigations, value property selection, state persistence (statefulness) and more." />
+    	<meta charset='utf-8' />
+    	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    	<meta name="description" content="jquery-paginated-dropdown-widget : A Facebook: Update status or Google+: What's new... like widget which allows you to select profile(s) or page(s) from suggested drop down list, highlights them while you continue entering content and provides a direct link to the selected profile(s) or page(s) after posting the content." />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    	<title>jquery-paginated-dropdown-widget</title>
+    	
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+		<script type="text/javascript" src="assets/libs/filterJSON.plugin.min.js"></script>
+		<script type="text/javascript" src="assets/libs/paginated.dropdown.widget.min.js"></script>
+    	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    	<link rel="stylesheet" type="text/css" media="screen" href="assets/paginated.dropdown.widget.css">
 
-    <title>jquery-paginated-dropdown-widget</title>
-  </head>
+		<style type="text/css">
+			tbody .vertical-align-top { vertical-align: top; }
+    		span.required { color: red; }
+			.borderless { border: none; }
+    		.input-form { width: 100%; }
+    		.textArea100 { width: 98%; height: 100px; }
+    		.textArea { width: 98%; height: 200px; }
+			.input-label,.input-label-checkbox { width: 200px; color: #000000; }
+			.input-label { vertical-align: top; padding: 10px 5px 5px 10px; }
+			.checkbox { margin-left: 20px; }
+			.property-value-actions { display: inline-block; }
+			.x-inline-block { display: inline-block; zoom: 1; *display: inline; _height: 30px; }
+			.x-float-right { float: right; }
+			.x-width-10px { width: 10px; }
+			.x-button { background: #DDDDDD; color: #373737; border: 1px solid #373737; cursor: pointer; }
+			.x-button:hover { background: #373737; color: #DDDDDD; border: 1px solid #DDDDDD; cursor: pointer; }
+			.width250px { width: 250px; }
+			.small-text { font-size: 10px; }
+    	</style>
+  	</head>
 
-  <body>
-
+	<body>
     <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/kapilkashyap/jquery-paginated-dropdown-widget">View on GitHub</a>
+	    <div id="header_wrap" class="outer">
+			<header class="inner">
+	        	<a id="forkme_banner" href="https://github.com/kapilkashyap/jquery-paginated-dropdown-widget">View on GitHub</a>
 
-          <h1 id="project_title">jquery-paginated-dropdown-widget</h1>
-          <h2 id="project_tagline">A  jQuery Paginated Dropdown Widget which takes a JSON response from the server and converts it into a paginated drop down. It has features like pagination (pretty obvious), custom templates, JSON filtering, keyboard navigations, value property selection, state persistence (statefulness) and more.</h2>
+	          	<h1 id="project_title">jquery-paginated-dropdown-widget</h1>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/kapilkashyap/jquery-paginated-dropdown-widget/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/kapilkashyap/jquery-paginated-dropdown-widget/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+				<section id="downloads">
+	            	<a class="zip_download_link" href="https://github.com/kapilkashyap/jquery-paginated-dropdown-widget/zipball/master">Download this project as a .zip file</a>
+	              	<a class="tar_download_link" href="https://github.com/kapilkashyap/jquery-paginated-dropdown-widget/tarball/master">Download this project as a tar.gz file</a>
+	            </section>
+	        </header>
+	    </div>
 
     <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+    	<div id="main_content_wrap" class="outer">
+      		<section id="main_content" class="inner">
+        		<h1>jQuery Paginated Dropdown</h1>
+				<p>This widget takes a JSON response from the server and converts it into a paginated drop down.
+				It has features like pagination (pretty obvious), custom templates, JSON filtering, keyboard navigations,
+				value property selection, state persistence (statefulness) and more.<br/><br/>
+				This Widget has dependencies on jQuery-1.6+, jQuery UI Widget Factory 1.8+ and partially on jQuery filterJSON plugin
+				(also developed by me).<br/><br/>
+				
+				The filterJSON plugin is a utility which allows you to filter a JSON response 
+				based on property alone. Using filterJSON would be really helpful in scenarios where we are simply
+				returning a static JSON response always and are not doing any server-side filtering of the objects.
+				You can explore filterJSON over <a style="text-decoration: underline;" href="http://kapilkashyap.github.com/jquery-filter-json-plugin/" target="_blank">here</a>.
+				However, using filterJSON plugin is not mandatory and can be completely ignored.<br/>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+				<div>Enter text in the below input box to trigger suggestions.</div>
+				<table class="input-form">
+					<tr>
+						<th>Demo</th>
+					</tr>
+					<tr>
+						<td class="vertical-align-top">
+							<div class="x-inline-block">
+								<input type="text" class="apply-paginateddropdown width250px" name="searchTerm" value="" autocomplete="off" />
+							</div>
+							<div class="small-text"># Use below table to change configuration of Paginated Dropdown widget applied to input box.</div>
+						</td>
+					</tr>
+				</table>
+<br/>
+				<div class="paddingT20px">
+					<table class="input-form">
+						<tr>
+							<th>Properties</th>
+							<th>Values</th>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">url<span class="mandatory">*</span>:</td>
+							<td class="input-field text inputBorder">
+								<input id="url" type="text" value="assets/cricketers.json" readonly="readonly"/>
+								<span class="input-label">Default: null (Current value returns json object with id, name and email property)</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">itemTemplate<span class="mandatory">*</span>:</td>
+							<td class="input-field text inputBorder">
+								<textarea id="item-template" name="template" class="textArea"><div title="{@:id}"><div>{@:name}</div><div>{@:email}</div></div></textarea>
+								<span class="input-label">Default: null</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">valueProperty<span class="mandatory">*</span>:</td>
+							<td class="input-field text inputBorder">
+								<select id="value-property">
+									<option value="name">name</option>
+									<option value="email">email</option>
+									<option value="id">id</option>
+								</select>
+								<span class="input-label">Default: null (one of the properties in the returned json object.)</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">itemsPerPage:</td>
+							<td class="input-field text inputBorder">
+								<select id="items-per-page">
+									<option value="5">5</option>
+									<option value="10">10</option>
+									<option value="15">15</option>
+								</select>
+								<span class="input-label">Default: 10</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">dropdownWidth:</td>
+							<td class="input-field text inputBorder">
+								<input id="dropdown-width" type="text" name="dropdownWidth" value="" />
+								<span class="input-label">Enter numeric value. Default: null</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">persistState:</td>
+							<td class="input-field text inputBorder">
+								<select id="persist-state">
+									<option value="true">True</option>
+									<option value="false" selected="selected">False</option>
+								</select>
+								<span class="input-label">Default: false</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">closeBtnRequired:</td>
+							<td class="input-field text inputBorder">
+								<select id="close-btn-required">
+									<option value="true">True</option>
+									<option value="false">False</option>
+								</select>
+								<span class="input-label">Default: true</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">footerRequired:</td>
+							<td class="input-field text inputBorder">
+								<select id="footer-required">
+									<option value="true">True</option>
+									<option value="false">False</option>
+								</select>
+								<span class="input-label">Default: true</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">keyNavigation.up-down:</td>
+							<td class="input-field text inputBorder">
+								<select id="up-down">
+									<option value="true">True</option>
+									<option value="false">False</option>
+								</select>
+								<span class="input-label">Default: true</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">keyNavigation.next-prev:</td>
+							<td class="input-field text inputBorder">
+								<select id="next-prev">
+									<option value="true">True</option>
+									<option value="false">False</option>
+								</select>
+								<span class="input-label">Default: true</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">customEventPrefix:</td>
+							<td class="input-field text inputBorder">
+								<input id="custom-event-prefix" type="text" name="customEventPrefix" value="" />
+								<span class="input-label">Default: 'paginateddropdown'</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">filterJSON:</td>
+							<td class="input-field text inputBorder">
+								<textarea id="filterJSON" name="filterJSON" class="textArea">{"wrapper": true, "checkContains": false, "startsWith": true, "matchCase": false, "avoidDuplicates": false}</textarea>
+								<span class="input-label">Default: null</span>
+							</td>
+						</tr>
+						<tr class="input-row">
+							<td class="input-label text inputBorder">cache:</td>
+							<td class="input-field text inputBorder">
+								<select id="cache">
+									<option value="false">False</option>
+									<option value="true">True</option>
+								</select>
+								<span class="input-label">Default: false</span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="borderless">
+								<button id="btn-apply" name="Apply" class="x-button">Apply Changes</button>
+							</td>
+						</tr>
+					</table>
+				</div>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+				<h3>Browser Support</h3>
+				<p>IE7+, FF 3.6+, Opera 12+, Safari 5+ and Chrome.</p>
+				<h3>Known Issues</h3>
+				<p>If you are using filterJSON plugin. Then for this widget to work in IE7 and below, you will have to include JSON2.</p>
+				<p>You can use: <a href="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js">http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js</a></p>
+				<h3>Licence</h3>
+				<p>Copyright (c) 2012 Kapil Kashyap. Dual licensed under MIT License and GPL License.</p>
+      		</section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">jquery-paginated-dropdown-widget maintained by <a href="https://github.com/kapilkashyap">kapilkashyap</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
+      	<footer class="inner">
+        	<p class="copyright">jquery-paginated-dropdown-widget maintained by <a href="https://github.com/kapilkashyap">kapilkashyap</a></p>
+        	<p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      	</footer>
     </div>
+  	</body>
 
-    
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$( ".apply-paginateddropdown" ).paginateddropdown({
+				url: "assets/cricketers.json",
+				valueProperty: "name",
+				itemTemplate: "<div title=\"{@:email}\"><div>{@:name}</div><div>{@:email}</div></div>",
+				filterJSON: {startsWith: true}
+			}).bind( "paginateddropdownitemselected", function( event, data ) {
+				if(window.console) {
+					console.log("callback - paginateddropdownitemselected");
+					console.log(event);
+					console.log(data);
+				}
+		    });
+		});
+		
+		$( "#btn-apply" ).click(function( event ) {
+			var dropdownWidth = $( "#dropdown-width" ).val(),
+				persistState = $( "#persist-state" ).val(),
+				closeBtnRequired = $( "#close-btn-required" ).val(),
+				footerRequired = $( "#footer-required" ).val(),
+				upDown = $( "#up-down" ).val(),
+				nextPrev = $( "#next-prev" ).val(),
+				cep = $( "#custom-event-prefix" ).val(),
+				cache = $( "#cache" ).val(),
+				filterJSONConfig = $( "#filterJSON" ).val();
 
-  </body>
+			$( ".apply-paginateddropdown" ).paginateddropdown( "destroy" );
+			
+			$( ".apply-paginateddropdown" ).paginateddropdown({
+				url: $( "#url" ).val(),
+				itemTemplate: $( "#item-template" ).val(),
+				valueProperty: $( "#value-property" ).val(),
+				itemsPerPage: $( "#items-per-page" ).val(),
+				dropdownWidth: dropdownWidth == "" ? null : parseInt(dropdownWidth, 10),
+				persistState: persistState == "true" ? true : false,
+				closeBtnRequired: closeBtnRequired == "true" ? true : false,
+				footerRequired: footerRequired == "true" ? true : false,
+				keyNavigation: {
+					up_down: upDown == "true" ? true : false,
+					next_prev: nextPrev == "true" ? true : false
+				},
+				filterJSON: filterJSONConfig.length > 0 ? $.parseJSON(filterJSONConfig) : false,
+				customEventPrefix: cep == "" ? null : cep,
+				cache: cache == "true" ? true : false
+			}).bind( (cep != "" ? cep : $.kk.paginateddropdown.prototype.widgetEventPrefix) + "itemselected", function( event, data ) {
+				if(window.console) {
+					console.log("callback - " + event.type);
+					console.log(event);
+					console.log(data);
+				}
+		    });
+			$( ".apply-paginateddropdown" ).val( "" ).keyup().focus();
+		});
+	</script>
 </html>
