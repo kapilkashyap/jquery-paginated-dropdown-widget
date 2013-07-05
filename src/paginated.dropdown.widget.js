@@ -43,7 +43,7 @@
 	    	// create a wrapper for the target element
 	    	wrapper = $( "<div></div>" ).addClass( this.wp.widgetBaseClass + this.wp.hyphen + this.options.elementType + this.wp.hyphen + this.wp.wrapperLabel );
 	    	// wrap the element with the wrapper
-	    	this.element.wrap( wrapper.width(parseInt(this.element.css("width"), 10) + ($.browser.msie ? 2 : 0)));
+	    	this.element.wrap( wrapper.width(parseInt(this.element.css("width"), 10) + (!!window.ActiveXObject ? 2 : 0)));
 
 	    	// set widget state
 	    	this._setWidgetState();
