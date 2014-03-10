@@ -20,7 +20,7 @@
 			valueProperty: null,
 			itemsPerPage: 10,
 			dropdownWidth: null,
-			elementType: 'text',
+			elementType: "text",
 			persistState: false,
 			closeBtnRequired: true,
 			footerRequired: true,
@@ -111,7 +111,7 @@
 	    	var self = this,
 	    		el = self.element;
 
-	    	if(self.options.elementType && self.options.elementType == 'text') {
+	    	if(self.options.elementType && self.options.elementType == "text") {
 				el.keydown(function( event ) {
 					self._keyNavigations( event );
 				});
@@ -138,7 +138,7 @@
     				self._fetchData( $.trim(el.val()) );
 	    		});
 	    	}
-	    	else if(self.options.elementType && self.options.elementType == 'link') {
+	    	else if(self.options.elementType && self.options.elementType == "link") {
 	    		el.click(function( event ) {
 	    			self._fetchData();
 	    		});
@@ -169,7 +169,7 @@
 	    	var el = this.element;
 			if(this.options.valueProperty) {
 				if($.type(o) == "object") {
-					el.val( o[this.options.valueProperty] ).focus();
+					el.val( $.type(this.options.valueProperty) == "array" ? o[this.options.valueProperty[0]] : o[this.options.valueProperty] ).focus();
 				}
 				else {
 					el.val( o ).focus();
@@ -290,6 +290,7 @@
 			this._bindDropdownComponentEvents();
 			this._highlightItem(this._getWidgetState().highlightedIndex);
 			this._markAllItems();
+			this.element.parent().find( "." + this.wp.widgetBaseClass + this.wp.hyphen + this.wp.containerLabel ).show();
 	    },
 	    _constructHtmlUsingTemplate: function() {
 	    	var self = this,
@@ -298,7 +299,7 @@
 	    		widgetState = self._getWidgetState(),
 	    		matchedText = null,
 	    		underlinedText = null,
-	    		highlightRegExp = new RegExp(widgetState.query, "i"),
+	    		highlightRegExp = new RegExp($.ui.autocomplete.escapeRegex(widgetState.query), "i"),
 	    		highlightQueryText = function(text) {
 		    		underlinedText = "";
 	    			matchedText = text.match(highlightRegExp);
@@ -323,16 +324,21 @@
 				if($.type(item) == "object") {
 					$.each(item, function(k, v) {
 						var templateKey = "{@:" + k + "}",
-						regEx = new RegExp(templateKey, "g");
+							regEx = new RegExp($.ui.autocomplete.escapeRegex(templateKey), "g");
 						
 						if(self.options.itemTemplate.indexOf( templateKey ) != -1) {
-							templateClone = templateClone.replace( regEx, (k == self.options.valueProperty) ? highlightQueryText(v) : v );
+							if($.type(self.options.valueProperty) == "array") {
+								templateClone = templateClone.replace( regEx, (self.options.valueProperty.indexOf(k) != -1) ? highlightQueryText(v) : v );
+							}
+							else {
+								templateClone = templateClone.replace( regEx, (k == self.options.valueProperty) ? highlightQueryText(v) : v );
+							}
 						}
 					});
 				}
 				else {
 					var templateKey = "{@:" + self.options.valueProperty + "}",
-					regEx = new RegExp(templateKey, "g");
+						regEx = new RegExp($.ui.autocomplete.escapeRegex(templateKey), "g");
 					
 					if(self.options.itemTemplate.indexOf( templateKey ) != -1) {
 						templateClone = templateClone.replace( regEx, (k == self.options.valueProperty) ? highlightQueryText(item) : item );
@@ -427,6 +433,8 @@
 	    		parent = self.element.parent();
 	    	// bind footer events only if footer is required.
 	    	if(self.options.footerRequired) {
+	    		// TODO: If customisable footer is provided, then we should be able to specify elements to attach events too,
+	    		// rather than creating a generic CSS definition to attach the events to.
 		    	parent.find( "." + self.wp.widgetBaseClass + self.wp.hyphen + self.wp.footerLabel ).bind("click dblclick", function( e ) {
 		    		self.element.focus();
 		    	});
@@ -466,11 +474,9 @@
 		},
 		_markAllItems: function() {
 			var self = this,
-				items = this.element.siblings( "." + this.wp.widgetBaseClass + this.wp.hyphen + this.wp.containerLabel ).children();
+				items = this.element.siblings( "." + this.wp.widgetBaseClass + this.wp.hyphen + this.wp.containerLabel ).children().not( "." + this.wp.widgetBaseClass + this.wp.hyphen + this.wp.footerLabel );
 			items.each(function(index, item) {
-				if(!$( item ).hasClass( self.wp.widgetBaseClass + self.wp.hyphen + self.wp.footerLabel )) {
-					$( item ).addClass( self.wp.widgetBaseClass + self.wp.hyphen + self.wp.itemLabel );
-				}
+				$( item ).addClass( self.wp.widgetBaseClass + self.wp.hyphen + self.wp.itemLabel );
 			});
 		},
 		_removeItemHighlight: function(selectedItem) {
